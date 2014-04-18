@@ -21,7 +21,7 @@ def find_month(month)
   when 10
     month_name = "October"
   when 11
-    month_name = "Novermber"
+    month_name = "November"
   when 12
     month_name = "December"
   else 

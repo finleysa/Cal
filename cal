@@ -3,7 +3,7 @@
 $LOAD_PATH << "lib"
 require 'zellers'
 require 'month'
-# require 'year'
+require 'year'
 
 if ARGV.length == 0
   month = Time.now.strftime("%m").to_i
@@ -31,9 +31,9 @@ if month
   month_name = find_month(month)
 
   first_day = zeller.find_first_day
+  #SET SATURDAY TO 7
+  first_day = 7 if first_day == 0
   days_in_month = zeller.days_in_month
-  puts "Month Name: #{month_name}, First Day: #{first_day}, Days in Month: #{days_in_month}"
-  puts
 
   #PRINT TOP 2 ROWS
   row_length = 20
@@ -46,27 +46,42 @@ if month
     space << " "
     i += 1
   end
-  puts "#{space}#{month_name} #{year}#{space}"
+  puts "#{space}#{month_name} #{year}"
   puts "Su Mo Tu We Th Fr Sa"
 
   #PRINT THE REST
   j=1
-  space = ""
+  dates = ""
+
+
   while j < first_day
     j += 1
-    space << "   "
+    dates << "   "
   end
 
+  line_count = 0
   k=1
   while  k <= days_in_month do
-    space << " #{k} " if k.to_s.length == 1
-    space << "#{k} " if k.to_s.length == 2
-    if space.length >= 20
-      puts "#{space}"
-      space = ""
+    if dates.length <=17
+      dates << " #{k} " if k.to_s.length == 1
+      dates << "#{k} " if k.to_s.length == 2
+    else
+      dates << " #{k}" if k.to_s.length == 1
+      dates << "#{k}" if k.to_s.length == 2
+    end
+    if dates.length >= 20
+      puts "#{dates}"
+      dates = ""
+      line_count += 1
     end
     k += 1
   end
 
-  puts "#{space}"
+  #Make sure correct number of new lines added
+  dates.strip!
+  while line_count < 6 do
+    dates << "\n"
+    line_count += 1
+  end
+  print "#{dates}" if dates != ""
 end

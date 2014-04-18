@@ -1,56 +1,78 @@
 def year(year)
   dates = []
   for i in 1..12
-    dates << Zellers.new(i, year.to_i)
+    dates[i] = Zellers.new(i, year.to_i)
   end
 
   first_days = []
   month_days = []
-  j = 0
-  dates.each do |i|
-    puts "#{i.days_in_month}"
-    first_days << i.find_first_day
-    month_days << i.month_days
+  month_names = []
+  for i in 1..12
+    month_names[i] = find_month(i)
+    first_days[i] = dates[i].find_first_day
+    month_days[i] = dates[i].days_in_month
   end
 
-  #PRINT TOP 2 ROWS
+  #PRINT TOP ROW
+  total_row_length = 62
   row_length = 20
-  display_month = "#{month_name} #{year}"
-  (1..12).each do |i|
-    empty = ((row_length - display_month.length - year.to_s.length + 2) / 2).floor
-  end
 
-  i=0
-  space = " "
-  while i < empty.abs do
-    space << " "
-    i += 1
-  end
-  puts "#{space}#{month_name} #{year}#{space}"
-  puts "Su Mo Tu We Th Fr Sa  "
-
+  #########
 =begin
-
-  #PRINT THE REST
   j=1
   space = ""
   while j < first_day
     j += 1
     space << "   "
   end
-
-  k=1
-  while  k <= days_in_month do
-    space << " #{k} " if k.to_s.length == 1
-    space << "#{k} " if k.to_s.length == 2
-    if space.length >= 20
-      puts "#{space}"
-      space = ""
-    end
-    k += 1
-  end
-
-  puts "#{space}"
 =end
+  #########
+
+
+
+  k=true
+  while k == true
+    for i in 1..12
+      empty = ((row_length - month_names[i].length - year.to_s.length + 2) / 2).floor
+      j=0
+      space = " "
+      while j < empty.abs do
+        space << " "
+        j += 1
+      end
+
+      ## Shit Gets Weird Here ##
+      ## End ##
+
+      if i % 3 == 0
+        puts "#{space}#{month_names[i]} #{space}"
+        puts "Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa"
+=begin
+        j=1
+        space = ""
+        while j < first_day
+          j += 1
+          space << "   "
+        end
+
+        date_string = []
+        k=1
+        while  k <= days_in_month do
+          space << " #{k} " if k.to_s.length == 1
+          space << "#{k} " if k.to_s.length == 2
+          if space.length >= 20
+            date_string << "#{space}"
+            space = ""
+          end
+          k += 1
+        end
+=end
+      else
+        print "#{space}#{month_names[i]} #{space} "
+      end
+    end
+    
+    k=false
+  end
 end
 

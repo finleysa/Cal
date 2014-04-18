@@ -41,8 +41,6 @@ class Zellers
     elsif thirty_days.include?(@month)
       return 30
     else
-      puts
-      puts @year
       if (@year % 400 == 0) or (@year % 4 == 0 and @year % 100 != 0)
         return 29
       else
