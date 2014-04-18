@@ -1,17 +1,27 @@
-require_relative 'zellers.rb'
-require_relative 'month.rb'
+#!/usr/bin/env ruby
 
-if ARGV[0].length >= 3
+$LOAD_PATH << "lib"
+require 'zellers'
+require 'month'
+# require 'year'
+
+if ARGV.length == 0
+  month = Time.now.strftime("%m").to_i
+  year = Time.now.strftime("%Y").to_i
+  zeller = Zellers.new(month, year)
+elsif ARGV[0].length == 4
+  year(ARGV[0])
+elsif ARGV[0].to_i == 0
   month = month_string(ARGV[0])
+  year = ARGV[1].to_i
+  zeller = Zellers.new(month, year)
+elsif ARGV.length == 2
+  month = ARGV[0].to_i
   year = ARGV[1].to_i
   zeller = Zellers.new(month, year)
 elsif ARGV.length == 1
   year = ARGV[0].to_i
   zeller = Zellers.new(year)
-elsif ARGV.length == 2
-  month = ARGV[0].to_i
-  year = ARGV[1].to_i
-  zeller = Zellers.new(month, year)
 else
   raise ArgumentError, 'too many arguments :('
 end
@@ -38,7 +48,7 @@ if month
   end
   puts "#{space}#{month_name} #{year}#{space}"
   puts "Su Mo Tu We Th Fr Sa"
-  
+
   #PRINT THE REST
   j=1
   space = ""

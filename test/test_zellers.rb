@@ -1,5 +1,5 @@
 require_relative 'helper'
-require_relative "../zellers.rb"
+require_relative "../lib/zellers.rb"
 require "test/unit"
 
 class TestZellers < Test::Unit::TestCase
