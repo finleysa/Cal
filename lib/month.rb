@@ -1,63 +1,58 @@
-def find_month(month)
-  case month
-  when 1
-    month_name = "January"
-  when 2
-    month_name = "February"
-  when 3
-    month_name = "March"
-  when 4
-    month_name = "April"
-  when 5
-    month_name = "May"
-  when 6
-    month_name = "June"
-  when 7
-    month_name = "July"
-  when 8
-    month_name = "August"
-  when 9
-    month_name = "September"
-  when 10
-    month_name = "October"
-  when 11
-    month_name = "November"
-  when 12
-    month_name = "December"
-  else 
-    raise InvalidMonth
-  end
-  return month_name
-end
+def print_month (month, year, zeller)
+  month_name = month
 
-def month_string(month)
-  case month
-  when "January"
-    month_num = 1
-  when "February"
-    month_num = 2
-  when "March"
-    month_num = 3
-  when "April"
-    month_num = 4
-  when "May"
-    month_num = 5
-  when "June"
-    month_num = 6
-  when "July"
-    month_num = 7
-  when "August"
-    month_num = 8
-  when "September"
-    month_num = 9
-  when "October"
-    month_num = 10
-  when "November"
-    month_num = 11
-  when "December"
-    month_num = 12
-  else 
-    raise InvalidMonth
+  first_day = zeller.find_first_day
+  #SET SATURDAY TO 7
+  first_day = 7 if first_day == 0
+  days_in_month = zeller.days_in_month
+
+  #PRINT TOP 2 ROWS
+  row_length = 20
+  display_month = "#{month_name} #{year}"
+  empty = ((row_length - display_month.length - year.to_s.length + 2) / 2).floor
+
+  i=0
+  space = " "
+  while i < empty.abs do
+    space << " "
+    i += 1
   end
-  return month_num
+  puts "#{space}#{month_name} #{year}"
+  puts "Su Mo Tu We Th Fr Sa"
+
+  #PRINT THE REST
+  j=1
+  dates = ""
+
+
+  while j < first_day
+    j += 1
+    dates << "   "
+  end
+
+  line_count = 0
+  k=1
+  while  k <= days_in_month do
+    if dates.length <=17
+      dates << " #{k} " if k.to_s.length == 1
+      dates << "#{k} " if k.to_s.length == 2
+    else
+      dates << " #{k}" if k.to_s.length == 1
+      dates << "#{k}" if k.to_s.length == 2
+    end
+    if dates.length >= 20
+      puts "#{dates}"
+      dates = ""
+      line_count += 1
+    end
+    k += 1
+  end
+
+  #Make sure correct number of new lines added
+  dates.strip!
+  while line_count < 6 do
+    dates << "\n"
+    line_count += 1
+  end
+  print "#{dates}" if dates != ""
 end

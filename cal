@@ -2,86 +2,39 @@
 
 $LOAD_PATH << "lib"
 require 'zellers'
+require 'month_convert'
 require 'month'
 #require 'year'
 
+## Print this month
 if ARGV.length == 0
   month = Time.now.strftime("%m").to_i
   year = Time.now.strftime("%Y").to_i
   zeller = Zellers.new(month, year)
-elsif ARGV[0].length == 4
-  year(ARGV[0])
+
+## Year method
+elsif ARGV.length == 1
+  year = ARGV[0].to_i
+  zeller = Zellers.new(1, year)
+  some_array = print_month(1, year, zeller).to_s
+
+## Full month string method
 elsif ARGV[0].to_i == 0
   month = month_string(ARGV[0])
   year = ARGV[1].to_i
-  zeller = Zellers.new(month, year)
+  zeller = Zellers.new(month, year).to_s
+
+## Month and year method
 elsif ARGV.length == 2
   month = ARGV[0].to_i
   year = ARGV[1].to_i
   zeller = Zellers.new(month, year)
-elsif ARGV.length == 1
-  year = ARGV[0].to_i
-  zeller = Zellers.new(year)
 else
-  raise ArgumentError, 'too many arguments :('
+  raise ArgumentError, 'too many arguments :( sadface'
 end
 
 #Print
 if month
-  month_name = find_month(month)
-
-  first_day = zeller.find_first_day
-  #SET SATURDAY TO 7
-  first_day = 7 if first_day == 0
-  days_in_month = zeller.days_in_month
-
-  #PRINT TOP 2 ROWS
-  row_length = 20
-  display_month = "#{month_name} #{year}"
-  empty = ((row_length - display_month.length - year.to_s.length + 2) / 2).floor
-
-  i=0
-  space = " "
-  while i < empty.abs do
-    space << " "
-    i += 1
-  end
-  puts "#{space}#{month_name} #{year}"
-  puts "Su Mo Tu We Th Fr Sa"
-
-  #PRINT THE REST
-  j=1
-  dates = ""
-
-
-  while j < first_day
-    j += 1
-    dates << "   "
-  end
-
-  line_count = 0
-  k=1
-  while  k <= days_in_month do
-    if dates.length <=17
-      dates << " #{k} " if k.to_s.length == 1
-      dates << "#{k} " if k.to_s.length == 2
-    else
-      dates << " #{k}" if k.to_s.length == 1
-      dates << "#{k}" if k.to_s.length == 2
-    end
-    if dates.length >= 20
-      puts "#{dates}"
-      dates = ""
-      line_count += 1
-    end
-    k += 1
-  end
-
-  #Make sure correct number of new lines added
-  dates.strip!
-  while line_count < 6 do
-    dates << "\n"
-    line_count += 1
-  end
-  print "#{dates}" if dates != ""
+  month = find_month(month)
+  print_month(month, year, zeller)
 end
