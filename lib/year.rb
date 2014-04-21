@@ -42,6 +42,31 @@ def year(year)
       end
 
       ## Shit Gets Weird Here ##
+      date_strings = []
+      while date_strings.length < 24
+        if date_string.length % == 1 or date_string.length % 7 == 0
+          j=1
+          space = ""
+          while j < first_day
+            j += 1
+            space << "   "
+          end
+        end
+
+        while k <= days_in_month do
+          space << " #{k} " if k.to_s.length == 1
+          space << "#{k} " if k.to_s.length == 2
+          if space.length >= 20
+            date_string[k] = "#{space}"
+            space = ""
+            k += 1
+          else
+          end
+        end
+
+
+        
+      end
       ## End ##
 
       if i % 3 == 0
@@ -57,7 +82,7 @@ def year(year)
 
         date_string = []
         k=1
-        while  k <= days_in_month do
+        while k <= days_in_month do
           space << " #{k} " if k.to_s.length == 1
           space << "#{k} " if k.to_s.length == 2
           if space.length >= 20

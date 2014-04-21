@@ -22,7 +22,7 @@ class TestCal < Test::Unit::TestCase
     assert_equal `cal 07 1800`, `ruby cal 07 1800`
   end
 =begin
-  def test_all_feb_months_1800_3000
+  def test_all_months_1800_3000
     for i in 1800..3000
       for j in 1..12
         assert_equal `cal #{j} #{i}`, `ruby cal #{j} #{i}`

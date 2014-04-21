@@ -3,7 +3,7 @@
 $LOAD_PATH << "lib"
 require 'zellers'
 require 'month'
-require 'year'
+#require 'year'
 
 if ARGV.length == 0
   month = Time.now.strftime("%m").to_i
