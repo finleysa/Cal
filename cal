@@ -15,8 +15,29 @@ if ARGV.length == 0
 ## Year method
 elsif ARGV.length == 1
   year = ARGV[0].to_i
-  zeller = Zellers.new(1, year)
-  some_array = print_month(1, year, zeller).to_s
+
+  #months in array
+  jan_mar = []
+  apr_jun = []
+  jul_sep = []
+  oct_dec = []
+
+  for i in 0..2
+    jan_mar[i] = print_month(i+1, year, Zellers.new(i+1, year))
+    apr_jun[i] = print_month(i+4, year, Zellers.new(i+4, year))
+    jul_sep[i] = print_month(i+7, year, Zellers.new(i+7, year))
+    oct_dec[i] = print_month(i+10, year, Zellers.new(i+10, year))
+  end
+
+  year_string = year.to_s
+  puts "#{year.to_s.center(64)}\n\n"
+  7.times { |i| puts "#{jan_mar[0][i]}   #{jan_mar[1][i]}  #{jan_mar[2][i]}" }
+  puts
+  7.times { |i| puts "#{apr_jun[0][i]}   #{apr_jun[1][i]}  #{apr_jun[2][i]}" }
+  puts
+  7.times { |i| puts "#{jul_sep[0][i]}   #{jul_sep[1][i]}  #{jul_sep[2][i]}" }
+  puts
+  7.times { |i| puts "#{oct_dec[0][i]}   #{oct_dec[1][i]}  #{oct_dec[2][i]}" }
 
 ## Full month string method
 elsif ARGV[0].to_i == 0
@@ -36,5 +57,5 @@ end
 #Print
 if month
   month = find_month(month)
-  print_month(month, year, zeller)
+  puts  print_month(month, year, zeller)
 end

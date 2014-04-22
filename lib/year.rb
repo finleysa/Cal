@@ -64,8 +64,6 @@ def year(year)
           end
         end
 
-
-        
       end
       ## End ##
 

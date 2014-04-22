@@ -1,5 +1,9 @@
 def print_month (month, year, zeller)
-  month_name = month
+  if month.class == fixnum
+    month_name = find_month(month)
+  else
+    month_name = month
+  end
 
   first_day = zeller.find_first_day
   #SET SATURDAY TO 7
@@ -8,7 +12,7 @@ def print_month (month, year, zeller)
 
   #PRINT TOP 2 ROWS
   row_length = 20
-  display_month = "#{month_name} #{year}"
+  display_month = "#{month_name}"
   empty = ((row_length - display_month.length - year.to_s.length + 2) / 2).floor
 
   i=0
@@ -17,8 +21,9 @@ def print_month (month, year, zeller)
     space << " "
     i += 1
   end
-  puts "#{space}#{month_name} #{year}"
-  puts "Su Mo Tu We Th Fr Sa"
+  date_array = []
+  date_array.push "#{space}#{month_name}#{space}"
+  date_array.push "Su Mo Tu We Th Fr Sa"
 
   #PRINT THE REST
   j=1
@@ -30,7 +35,7 @@ def print_month (month, year, zeller)
     dates << "   "
   end
 
-  line_count = 0
+  line_count = 1
   k=1
   while  k <= days_in_month do
     if dates.length <=17
@@ -41,18 +46,19 @@ def print_month (month, year, zeller)
       dates << "#{k}" if k.to_s.length == 2
     end
     if dates.length >= 20
-      puts "#{dates}"
+      date_array.push("#{dates}")
       dates = ""
       line_count += 1
     end
     k += 1
   end
 
+  dates.rstrip!
   #Make sure correct number of new lines added
-  dates.strip!
+  date_array.push(dates)
   while line_count < 6 do
-    dates << "\n"
+    date_array.push("\n")
     line_count += 1
   end
-  print "#{dates}" if dates != ""
+  return date_array
 end
