@@ -25,39 +25,40 @@ def find_month(month)
   when 12
     month_name = "December"
   else 
-    raise InvalidMonth
+    raise InvalidMonth, "WTF, that's not a month yo"
   end
   return month_name
 end
 
 def month_string(month)
+  month = month.downcase
   case month
-  when "January"
+  when "january"
     month_num = 1
-  when "February"
+  when "february"
     month_num = 2
-  when "March"
+  when "march"
     month_num = 3
-  when "April"
+  when "april"
     month_num = 4
-  when "May"
+  when "may"
     month_num = 5
-  when "June"
+  when "june"
     month_num = 6
-  when "July"
+  when "july"
     month_num = 7
-  when "August"
+  when "august"
     month_num = 8
-  when "September"
+  when "september"
     month_num = 9
-  when "October"
+  when "october"
     month_num = 10
-  when "November"
+  when "november"
     month_num = 11
-  when "December"
+  when "december"
     month_num = 12
   else 
-    raise InvalidMonth
+    raise InvalidMonth, "WTF, that's not a month yo"
   end
   return month_num
 end

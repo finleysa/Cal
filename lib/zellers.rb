@@ -1,5 +1,4 @@
 class Zellers
-
   def initialize(*args)
     if args.length == 1
       year = args
@@ -11,7 +10,6 @@ class Zellers
     @month = month
     @year = year
   end
-
   def find_first_day
     if @month < 3
       if @month == 1
@@ -23,16 +21,14 @@ class Zellers
       year = @year - 1
       end
     else
-    month = @month
-    year = @year
+      month = @month
+      year = @year
     end
-
     century = (year / 100).floor
     century_year = (year % 100)
     formula = (1 + (13 * (month +1)/5) + century_year + (century_year / 4) + (century / 4) + 5 * century) % 7
     return formula
   end
-
   def days_in_month
     thirty_one_days = [1, 3, 5, 7, 8, 10, 12]
     thirty_days = [4, 6, 9, 11]
@@ -48,5 +44,4 @@ class Zellers
       end
     end
   end
-
 end
