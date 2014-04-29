@@ -42,7 +42,7 @@ else
   raise ArgumentError, 'too many arguments :( sadface'
 end
 
-## Print month
+## Print month if month is provided
 if month
   month = find_month(month)
   mod_month = print_month(month, year, zeller)

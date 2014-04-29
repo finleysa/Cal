@@ -1,5 +1,5 @@
 require 'test/unit'
-class TestCal < Test::Unit::TestCase
+class TestMonth < Test::Unit::TestCase
   def test_month_1
     assert_equal `cal 02 2012`, `ruby cal 02 2012`
   end

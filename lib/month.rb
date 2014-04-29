@@ -1,16 +1,16 @@
 def print_month (month, year, zeller)
   first_day = zeller.find_first_day
-  #SET SATURDAY TO 7
+  ## SET SATURDAY TO 7
   first_day = 7 if first_day == 0
   days_in_month = zeller.days_in_month
 
-  #PRINT TOP 2 ROWS
+  ## PRINT TOP 2 ROWS
   display_month = "#{month}"
   date_array = []
   date_array.push(month.center(20))
   date_array.push "Su Mo Tu We Th Fr Sa"
 
-  #PRINT THE REST
+  ## PRINT THE REST
   j=1
   dates = ""
   while j < first_day
@@ -39,7 +39,8 @@ def print_month (month, year, zeller)
   while dates.length < 20
     dates << " "
   end
-  #Make sure correct number of new lines added
+
+  ## Make sure correct number of new lines added
   date_array.push(dates)
   while line_count < 6 do
     date_array.push("                    ")

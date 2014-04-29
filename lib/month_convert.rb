@@ -1,33 +1,6 @@
 def find_month(month)
-  case month
-  when 1
-    month_name = "January"
-  when 2
-    month_name = "February"
-  when 3
-    month_name = "March"
-  when 4
-    month_name = "April"
-  when 5
-    month_name = "May"
-  when 6
-    month_name = "June"
-  when 7
-    month_name = "July"
-  when 8
-    month_name = "August"
-  when 9
-    month_name = "September"
-  when 10
-    month_name = "October"
-  when 11
-    month_name = "November"
-  when 12
-    month_name = "December"
-  else 
-    raise InvalidMonth, "WTF, that's not a month yo"
-  end
-  return month_name
+  months = ["Shreck is love", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  return months[month].to_s
 end
 
 def month_string(month)
