@@ -1,5 +1,5 @@
 def find_month(month)
-  months = ["Shreck is love", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  months = ["Placeholder", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   return months[month].to_s
 end
 
@@ -31,7 +31,7 @@ def month_string(month)
   when "december"
     month_num = 12
   else 
-    raise InvalidMonth, "WTF, that's not a month yo"
+    raise InvalidMonth
   end
   return month_num
 end
